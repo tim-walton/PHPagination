@@ -69,8 +69,6 @@
             return array("query"=>$this->tostring, "pages"=>$this->count);
         }
 
-        function __destruct() {
-            @mysql_close($this->link);
-        }
+      
     }
 ?>
