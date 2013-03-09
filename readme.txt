@@ -34,8 +34,9 @@ $y = 0;
 		$y++;
 	}
 ?>
-</select>
+</select> 
 
+of <?=$page_array['pages'];?> pages
 
 <? 
 	if(isset($pages->link)) {
