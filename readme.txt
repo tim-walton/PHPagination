@@ -14,7 +14,8 @@ include('PHPagination.php');
 		$page_num = 1;
 	}
 
-$pages = new pagination(1000,1000, $page_num, 'some_table', "SELECT * FROM some_table WHERE column=1 AND column2 LIKE '%Email%/", 'ASC', 'id');
+$pages = new pagination(1000,1000, $page_num, 'some_table', "SELECT * FROM some_table WHERE column=1 AND column2
+LIKE '%Email%/", 'ASC', 'id');
 
 $page_array = $pages->execute();
 $arr = mysql_fetch_array(mysql_query($page_array['query']), MYSQL_ASSOC);
