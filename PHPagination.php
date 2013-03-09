@@ -1,8 +1,16 @@
 <?php
+
+    interface cfg {
+        const host = 'localhost';
+        const user = 'db_user';
+        const pass = 'db_pass';
+        const data = 'some_db';
+    }
+
+
     class pagination {
-      function __construct($startLimit = 100, $limit = 10, $curPage = 1, $table = 'some_table', $query = null, $order = 'DESC', $orderCol = 'id') {
-            $this->brt = new \BRT\brt_main(); 
-            $this->sql = $this->brt->sql;    
+        function __construct($startLimit = 100, $limit = 10, $curPage = 1, $table = 'some_table', $query = null, $order = 'DESC', $orderCol = 'id') {
+            $this->link = $this->open_conn();  
             $this->limit = $limit;
             $this->page = $curPage;
             $this->table = $table;
@@ -18,6 +26,21 @@
             }
         }
 
+        protected function open_conn() {
+            $link = mysql_pconnect ( cfg::host, cfg::user, cfg::pass, true);
+            if($link) {
+                mysql_select_db(cfg::data);
+                return $link;
+            } else {
+                die (mysql_error());
+            }
+        }
+
+        function result($query) {
+            $sql = mysql_query($query) or die(mysql_error());
+            $data = mysql_fetch_row($sql);
+            return $data[0];
+        }
 
         function calc_results() {
             $pages = (int) ceil(round($this->total / $this->limit) + 1);
@@ -38,13 +61,16 @@
         }
 
         function count_results() {
-            return $this->sql->result("SELECT COUNT(*) FROM {$this->table}");
+            return $this->result("SELECT COUNT(*) FROM {$this->table}");
         }
-    
+
         function execute() {
             $this->tostring = "{$this->query} ORDER BY {$this->col} {$this->order} LIMIT {$this->limit}"; 
             return array("query"=>$this->tostring, "pages"=>$this->count);
         }
 
+        function __destruct() {
+            @mysql_close($this->link);
+        }
     }
 ?>
