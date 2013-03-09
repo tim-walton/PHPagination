@@ -22,7 +22,7 @@ List Format: <br>
 <?
 $x = 0;
 	while($x < $page_array['pages']) {
-		echo "<li><a href='url?page={$x}'>Page {$x}</li>";
+		echo "<li><a href='url?page={$x}'>Page {$x}</a></li>";
 		$x++;
 	}
 ?>
