@@ -6,6 +6,7 @@ PHP MySQL Pagination Class
 ===============================
 
 Usage:
+<code>
 <?
 include('PHPagination.php');
 $pages = new pagination(1000,1000, $p, 'some_table', "SELECT * FROM some_table WHERE column=1 AND column2 LIKE '%Email%/", 'ASC', 'id');
@@ -34,4 +35,4 @@ echo "<option>{$y}</option>";
 }
 ?>
 </select>
-
+</code>
