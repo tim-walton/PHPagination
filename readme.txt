@@ -20,6 +20,7 @@ List Format: <br>
 $x = 0;
 while($x < $page_array['pages']) {
 echo "<li><a href='url?page={$s}'>Page {$x}</li>";
+$x++;
 }
 ?>
 </ul>
@@ -30,6 +31,7 @@ Select Page: <br>
 $y = 0;
 while($y < $page_array['pages']) {
 echo "<option>{$y}</option>";
+$y++;
 }
 ?>
 </select>
