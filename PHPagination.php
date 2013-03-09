@@ -8,7 +8,7 @@
     }
 
 
-    class pagination {
+    class pagination implements cfg{
         function __construct($startLimit = 100, $limit = 10, $curPage = 1, $table = 'some_table', $query = null, $order = 'DESC', $orderCol = 'id') {
             $this->link = $this->open_conn();  
             $this->limit = $limit;
