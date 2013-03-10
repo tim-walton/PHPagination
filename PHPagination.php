@@ -10,8 +10,7 @@
 
     class pagination implements cfg {
         function __construct($startLimit = 100, $limit = 10, $curPage = 1, $table = 'some_table', $query = null, $order = 'DESC', $orderCol = 'id') {
-            $this->i = new mysqli(cfg::host, cfg::user, cfg::pass, cfg::data);
-            $this->link = $this->open_conn();  
+            $this->i = new mysqli(cfg::host, cfg::user, cfg::pass, cfg::data); 
             $this->limit = $limit;
             $this->page = $curPage;
             $this->table = $table;
