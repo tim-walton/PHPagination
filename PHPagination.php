@@ -10,6 +10,7 @@
 
     class pagination implements cfg {
         function __construct($startLimit = 100, $limit = 10, $curPage = 1, $table = 'some_table', $query = null, $order = 'DESC', $orderCol = 'id') {
+            $this->i = new mysqli(cfg::host, cfg::user, cfg::pass, cfg::data);
             $this->link = $this->open_conn();  
             $this->limit = $limit;
             $this->page = $curPage;
@@ -26,20 +27,10 @@
             }
         }
 
-        protected function open_conn() {
-            $link = mysql_pconnect ( cfg::host, cfg::user, cfg::pass, true);
-            if($link) {
-                mysql_select_db(cfg::data);
-                return $link;
-            } else {
-                die (mysql_error());
-            }
-        }
-
-        function result($query) {
-            $sql = mysql_query($query) or die(mysql_error());
-            $data = mysql_fetch_row($sql);
-            return $data[0];
+        function result($q) {
+            $r = $this->i->query($q); 
+            $row = $r->fetch_row();
+            return $row[0];
         }
 
         function calc_results() {
@@ -69,6 +60,6 @@
             return array("query"=>$this->tostring, "pages"=>$this->count);
         }
 
-      
+
     }
 ?>
