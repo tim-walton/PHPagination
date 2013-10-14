@@ -1,5 +1,10 @@
 <?php
 
+    /*
+    * CloudInk, Inc.
+    * #letsdosomethingcool
+    */
+
     interface cfg {
         const host = 'localhost';
         const user = 'db_user';
